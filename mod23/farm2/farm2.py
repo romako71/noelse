@@ -53,7 +53,7 @@ class Gardener:
         print('Грядка обрабатывается садовником {}.'.format(
             self.name
         ))
-        for i_potato in self.garden.potatoes():
+        for i_potato in self.garden():
             i_potato.grow()
 
     def garden_harvesting(self):
