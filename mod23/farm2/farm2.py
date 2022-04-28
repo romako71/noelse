@@ -7,12 +7,12 @@ class Potato:
 
     def harvesting(self):
         if self.state == 3:
-           self.state = 0
+            self.state = 0
         self.print_state()
 
     def grow(self):
         if self.state < 3:
-           self.state += 1
+            self.state += 1
         self.print_state()
 
     def is_ripe(self):
@@ -24,6 +24,7 @@ class Potato:
         print('Картошка {} сейчас {}'.format(
             self.index, Potato.states[self.state]
         ))
+
 
 class PotatoGarden:
 
@@ -43,6 +44,7 @@ class PotatoGarden:
             print('Вся картошка созрела. Можно собирать!\n')
             return True
 
+
 class Gardener:
 
     def __init__(self, gardener_name, sample_garden):
@@ -50,21 +52,20 @@ class Gardener:
         self.garden = sample_garden
 
     def garden_care(self):
-        print('Грядка обрабатывается садовником {}.'.format(
+        print('Грядка обрабатывается садовником {}.\n'.format(
             self.name
         ))
-        for i_potato in self.garden():
-            i_potato.grow()
+        for j_potato in self.garden.potatoes:
+            j_potato.grow()
 
     def garden_harvesting(self):
-        for i_potato in self.garden.potatoes:
-            i_potato.harvesting()
+        for k_potato in self.garden.potatoes:
+            k_potato.harvesting()
         print('Урожай собран. Ждите нового урожая')
 
 
-
-
 my_garden = PotatoGarden(5)
+
 my_gardener = Gardener('Семён Семёныч', my_garden)
 my_garden.are_all_ripe()
 while True:
@@ -72,6 +73,6 @@ while True:
         my_gardener.garden_harvesting()
     else:
         my_gardener.garden_care()
-    if input('Введите 1, если хотите продолжить ждать урожай.\n'
-             'Введите любой другой символ, если сезон закончен') != '1':
+    if input('\nВведите 1, если хотите продолжить ждать урожай.\n'
+             '\nВведите любой другой символ, если сезон закончен: ') != '1':
         break

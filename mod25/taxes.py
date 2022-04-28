@@ -12,10 +12,10 @@ class Property():
     def get_worth(self):
         return self.__worth
 
-
     def tax_rate(self):
         tax = self.__worth/400
         return f'Базовый налог составляет {tax} рублей'
+
 
 class Apartment(Property):
 
@@ -26,6 +26,7 @@ class Apartment(Property):
         tax = self.get_worth() / 1000
         return f'Налог на квартиру составляет {tax} рублей'
 
+
 class Car(Property):
 
     def __str__(self):
@@ -35,6 +36,7 @@ class Car(Property):
         tax = self.get_worth() / 200
         return f'Налог на машину составляет {tax} рублей'
 
+
 class CountryHouse(Property):
 
     def __str__(self):
@@ -43,6 +45,7 @@ class CountryHouse(Property):
     def tax_rate(self):
         tax = self.get_worth() / 500
         return f'Налог на дачу составляет {tax} рублей'
+
 
 property = Property(5000)
 print(property)
