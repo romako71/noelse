@@ -17,7 +17,7 @@ class House:
         return ''
 
     def add_resident(self, creation):
-        if isinstance(creation, (Husband, Wife)):
+        if isinstance(creation, (Husband, Wife, Kinder)):
             self.__residents.append(creation)
 
 
@@ -53,6 +53,7 @@ class Husband(Human):
 
     def __init__(self, name='noname', satiety=30, happyness=100):
         super().__init__(name, satiety, happyness)
+        self.income = 0
 
     def __str__(self):
         return self.name
@@ -93,15 +94,31 @@ class Wife(Human):
             self.__fur_coats += 1
         return safe
 
+class Kinder(Human):
 
-pp = House()
-qq = Wife('Io')
-yy = Husband('Bob', pp)
-print(yy.satiety)
+    role = 'ребёнок'
 
-pp.add_resident(yy)
-pp.add_resident(qq)
-print(pp)
+    def go_to_school(self):
+        self.satiety -= 10
+        self.happyness -=10
+
+class Cat:
+
+
+
+
+
+
+home = House()
+wif = Wife('Io')
+hus = Husband('Bob')
+kind = Kinder('Zu')
+
+
+home.add_resident(hus)
+home.add_resident(wif)
+home.add_resident(kind)
+print(home)
 
 # def work(self):
 #     safe += 150
