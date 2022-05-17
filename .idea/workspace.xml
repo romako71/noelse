@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b249061-bfa4-4122-a090-87ddcce455fa" name="Changes" comment="comp">
-      <change afterPath="$PROJECT_DIR$/mod25/main.py" afterDir="false" />
+    <list default="true" id="2b249061-bfa4-4122-a090-87ddcce455fa" name="Changes" comment="25 cohab">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,11 +44,12 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/mod25" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Python_Basics" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Роман\PycharmProjects\noelse\mod25" />
       <recent name="C:\Users\Роман\PycharmProjects\noelse\04_registration" />
       <recent name="C:\Users\Роман\PycharmProjects\noelse" />
     </key>
@@ -177,7 +178,14 @@
       <option name="project" value="LOCAL" />
       <updated>1645248463417</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="25 cohab">
+      <created>1652700940701</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1652700940701</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -195,6 +203,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="четверг" />
     <MESSAGE value="четверг+1" />
-    <option name="LAST_COMMIT_MESSAGE" value="четверг+1" />
+    <MESSAGE value="25 cohab" />
+    <option name="LAST_COMMIT_MESSAGE" value="25 cohab" />
   </component>
 </project>
