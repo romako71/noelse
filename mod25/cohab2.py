@@ -1,9 +1,9 @@
 import random
 
-
 class House:
 
-    def __init__(self):
+    def __init__(self, address='без адреса'):
+        self.address = address
         self.__residents = []
         self.safe = 100
         self.fridge = 50
@@ -11,26 +11,27 @@ class House:
         self.dirt = 0
 
     def __str__(self):
-        print('Живут:', end=' ')
+        print('В доме {} живут:'.format(self.address), end=' ')
         for i_resident in self.__residents:
             print('{}({})\t'.format(i_resident.name, i_resident.role), end='')
+        print()
         return ''
 
     def add_resident(self, creation):
-        if isinstance(creation, (Husband, Wife, Kinder)):
+        if isinstance(creation, (Husband, Wife, Kinder, Cat)):
             self.__residents.append(creation)
 
 
 class Human:
 
-    def __init__(self, name='noname', satiety=30, happyness=100):
+    def __init__(self, name='noname', hub=None):
+        self.house = hub
         self.name = name
-        self.satiety = satiety
-        self.happyness = happyness
-        self.hub = None
+        self.satiety = 30
+        self.happyness = 100
 
     def __str__(self):
-        return self.name
+        return '{}:\t сытость {},\t счастья {}'.format(self.name, self.satiety, self.happyness)
 
     def lunch(self, ratio, fridge):
         if fridge > ratio:
@@ -39,24 +40,19 @@ class Human:
         else:
             self.satiety += fridge
             fridge = 0
-        print('{} съел {} еды. Сытость {}'.format(self.name, ratio, self.satiety))
-
+        print('{} пообедал. Сытость {}. Остаток в холодильнике: {}'.format(self.name, self.satiety, self.happyness))
         return fridge
 
     def petting(self):
         self.happyness += 5
         self.satiety -= 10
 
-
 class Husband(Human):
     role = 'муж'
 
-    def __init__(self, name='noname', satiety=30, happyness=100):
-        super().__init__(name, satiety, happyness)
+    def __init__(self, name='noname', hub=None):
+        super().__init__(name)
         self.income = 0
-
-    def __str__(self):
-        return self.name
 
     def play(self):
         self.satiety -= 10
@@ -68,12 +64,11 @@ class Husband(Human):
         self.satiety -= 10
         return safe
 
-
 class Wife(Human):
     role = 'жена'
 
-    def __init__(self, name='noname', satiety=30, happyness=100):
-        super().__init__(name, satiety, happyness)
+    def __init__(self, name='noname'):
+        super().__init__(name)
         self.__fur_coats = 0
 
     def buy_food(self, storage, safe):
@@ -86,13 +81,25 @@ class Wife(Human):
             stock_growth = safe
             storage += safe
             safe = 0
-        print('Добавлено {} еды. В тумбочке {} денег'.format(stock_growth, safe))
+        print('В холодильнике {} еды. В тумбочке {} денег'.format(storage, safe))
+        return storage, safe
 
     def buy_fur_coat(self, safe):
         if safe >= 350:
             safe -= 350
             self.__fur_coats += 1
+            print('Шуб в шубохранилище: {}'.format(self.__fur_coats))
+        else:
+            print('Денег на шубу пока не хватает')
         return safe
+
+    def cleaning(self, dirt):
+        if dirt > 100:
+            dirt -= 100
+        else:
+            dirt = 0
+        print('Грязи в доме осталось: {}'.format(dirt))
+        return dirt
 
 class Kinder(Human):
 
@@ -104,21 +111,56 @@ class Kinder(Human):
 
 class Cat:
 
+    role = 'кот'
+
+    def __init__(self, name):
+        self.name = name
+        self.satiety = 30
+
+    def __str__(self):
+        return 'Кот {}:\t сытость {}'.format(self.name, self.satiety)
+
+    def feed(self, cat_storage):
+        if cat_storage > 10:
+            cat_storage -= 10
+            self.satiety += 20
+        else:
+            self.satiety += cat_storage * 2
+            cat_storage = 0
+        print('{} поел. Сытость {}. Остаток кошачьей еды: {}'.format(self.name, self.satiety, cat_storage))
+        return cat_storage
+
+    def spoil_walls(self):
+
 
 
 
 
 
 home = House()
-wif = Wife('Io')
-hus = Husband('Bob')
-kind = Kinder('Zu')
+wif1 = Wife()
+wif2 = Wife('Kat')
+hus2 = Husband('Bob')
+kin1 = Kinder('Jimmy')
+
+home.add_resident(wif2)
+home.add_resident(kin1)
+cat1 = Cat('Tom')
+home.add_resident(hus2)
+home.add_resident(cat1)
+# wif = Wife('Io')
+# hus = Husband('Bob')
+#kind = Kinder('Zu')
 
 
-home.add_resident(hus)
-home.add_resident(wif)
-home.add_resident(kind)
+# home.add_resident(hus)
+# home.add_resident(wif)
+# home.add_resident(kind)
 print(home)
+print(cat1)
+print(wif2)
+print(hus2)
+print(kin1)
 
 # def work(self):
 #     safe += 150
