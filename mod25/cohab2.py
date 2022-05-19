@@ -4,7 +4,7 @@ class House:
 
     def __init__(self, address='без адреса'):
         self.address = address
-        self.__residents = []
+        self.residents = []
         self.safe = 100
         self.fridge = 50
         self.cat_food = 30
@@ -12,15 +12,32 @@ class House:
 
     def __str__(self):
         print('В доме {} живут:'.format(self.address), end=' ')
-        for i_resident in self.__residents:
+        for i_resident in self.residents:
             print('{}({})\t'.format(i_resident.name, i_resident.role), end='')
         print()
         return ''
 
     def add_resident(self, creation):
         if isinstance(creation, (Husband, Wife, Kinder, Cat)):
-            self.__residents.append(creation)
+            self.residents.append(creation)
 
+    def is_all_alive(self):
+        if not all([i_cohabitator.is_alive() for i_cohabitator in self.residents]):
+            print('Эксперимент не удался. Кто-то умер от голода')
+            return False
+        else:
+            return True
+
+    def status(self):
+        print('В доме {} живут: '.format(self.address))
+        for i_cohabitator in self.residents:
+            if isinstance(i_cohabitator, Cat):
+                print('\t{} {}\tсытость: {}'.format(i_cohabitator.role, i_cohabitator.name, i_cohabitator.satiety))
+            else:
+                print('\t{} {}\tсытость: {}\tсчастье: {}'.format(i_cohabitator.role, i_cohabitator.name, i_cohabitator.satiety, i_cohabitator.happyness))
+        print('\tВ холодильнике еды: {}\tКошачьей еды: {}\t Денег в тумбочке: {}\tГрязи: {}'.format(
+            self.fridge, self.cat_food, self.safe, self.dirt
+        ))
 
 class Human:
 
@@ -33,19 +50,26 @@ class Human:
     def __str__(self):
         return '{}:\t сытость {},\t счастья {}'.format(self.name, self.satiety, self.happyness)
 
-    def lunch(self, ratio, fridge):
-        if fridge > ratio:
-            self.satiety += ratio
-            fridge -= ratio
+    def lunch(self, fridge):
+        if fridge > 30:
+            self.satiety += 30
+            fridge -= 30
         else:
             self.satiety += fridge
             fridge = 0
-        print('{} пообедал. Сытость {}. Остаток в холодильнике: {}'.format(self.name, self.satiety, self.happyness))
+        print('{} пообедал. Сытость {}. Остаток в холодильнике: {}\n'.format(self.name, self.satiety, fridge))
         return fridge
 
     def petting(self):
         self.happyness += 5
         self.satiety -= 10
+        print('{} погладил кота\n'.format(self.name))
+
+    def is_alive(self):
+        if self.satiety >= 0:
+            return True
+        else:
+            return False
 
 class Husband(Human):
     role = 'муж'
@@ -57,12 +81,25 @@ class Husband(Human):
     def play(self):
         self.satiety -= 10
         self.happyness += 20
-        print('{} поиграл'.format(self.name))
+        print('{} поиграл\n'.format(self.name))
 
     def work(self, safe):
         safe += 150
         self.satiety -= 10
         return safe
+
+    def day_in_the_life(self, cash, storage):
+        if self.satiety < 15:
+            storage = self.lunch(storage)
+        elif cash < 80:
+            cash = self.work(cash)
+        else:
+            choice = random.randint(1, 2)
+            if choice == 1:
+                self.play()
+            else:
+                self.petting()
+        return cash, storage
 
 class Wife(Human):
     role = 'жена'
@@ -81,7 +118,7 @@ class Wife(Human):
             stock_growth = safe
             storage += safe
             safe = 0
-        print('В холодильнике {} еды. В тумбочке {} денег'.format(storage, safe))
+        print('{} сходила в магазин. В холодильнике {} еды. В тумбочке {} денег'.format(self.name, storage, safe))
         return storage, safe
 
     def buy_fur_coat(self, safe):
@@ -101,19 +138,37 @@ class Wife(Human):
         print('Грязи в доме осталось: {}'.format(dirt))
         return dirt
 
+    def day_in_the_life(self, storage, cat_storage, cash, mud):
+        if self.satiety < 25:
+            storage = self.lunch(storage)
+        elif (storage < 100) and (cash > 0):
+            storage, cash = self.buy_food(storage, cash)
+        elif (cat_storage <= 15) and (cash > 0):
+            cat_storage, cash = self.buy_food(cat_storage, cash)
+        elif mud >= 60:
+            mud = self.cleaning(mud)
+        elif cash >= 350:
+            cash = self.buy_fur_coat(cash)
+        else:
+            self.petting()
+        return storage, cat_storage, cash, mud
+
 class Kinder(Human):
 
     role = 'ребёнок'
 
-    def go_to_school(self):
-        self.satiety -= 10
-        self.happyness -=10
+    def day_in_the_life(self, storage):
+        if self.satiety < 25:
+            storage = self.lunch(storage)
+        else:
+            self.petting()
+        return storage
 
 class Cat:
 
     role = 'кот'
 
-    def __init__(self, name):
+    def __init__(self, name='unnamed cat'):
         self.name = name
         self.satiety = 30
 
@@ -130,37 +185,60 @@ class Cat:
         print('{} поел. Сытость {}. Остаток кошачьей еды: {}'.format(self.name, self.satiety, cat_storage))
         return cat_storage
 
-    def spoil_walls(self):
+    def spoil_walls(self, dirt):
+        self.satiety -= 10
+        dirt += 5
+        return dirt
 
+    def sleep(self):
+        self.satiety -= 10
 
+    def is_alive(self):
+        if self.satiety >= 0:
+            return True
+        else:
+            return False
 
+def day_in_the_life(hub):
+    for j_subject in hub.residents:
+        if isinstance(j_subject, Husband):
+            hub.safe, hub.fridge = j_subject.day_in_the_life(hub.safe, hub.fridge)
+        elif isinstance(j_subject, Wife):
+            hub.fridge, hub.cat_food, hub.safe, hub.dirt = j_subject.day_in_the_life(
+                hub.fridge, hub.cat_food, hub.safe, hub.dirt
+            )
+        elif isinstance(j_subject, Kinder):
+            hub.fridge = j_subject.day_in_the_life(hub.fridge)
+        else:
+            pass
 
 
 
 home = House()
-wif1 = Wife()
-wif2 = Wife('Kat')
+wif2 = Wife('Lu')
 hus2 = Husband('Bob')
 kin1 = Kinder('Jimmy')
-
-home.add_resident(wif2)
-home.add_resident(kin1)
 cat1 = Cat('Tom')
 home.add_resident(hus2)
+home.add_resident(wif2)
+home.add_resident(kin1)
 home.add_resident(cat1)
-# wif = Wife('Io')
-# hus = Husband('Bob')
-#kind = Kinder('Zu')
 
 
-# home.add_resident(hus)
-# home.add_resident(wif)
-# home.add_resident(kind)
-print(home)
-print(cat1)
-print(wif2)
-print(hus2)
-print(kin1)
+i_day = 0
+while i_day < 5:
+    i_day += 1
+    print('День {}'.format(i_day))
+    home.status()
+    print()
+    if not home.is_all_alive():
+        all_are_alive = False
+        break
+    else:
+        day_in_the_life(home)
+
+
+
 
 # def work(self):
 #     safe += 150
@@ -176,11 +254,7 @@ print(kin1)
 #         else:
 #             print('Денег в тумбочке нет')
 #
-#     def is_alive(self):
-#         if self.satiety >= 0:
-#             return True
-#         else:
-#             return False
+
 #
 #
 # class House:
@@ -202,12 +276,7 @@ print(kin1)
 #         for i_neighbour in self.neighbours:
 #             i_neighbour.name = input('Введите имя соседа: ')
 #
-#     def is_all_alive(self):
-#         if not all([i_neighbour.is_alive() for i_neighbour in self.neighbours]):
-#             print('Все соседи умерли от голода')
-#             return False
-#         else:
-#             return True
+
 #
 #     def neighborhood_status(self):
 #         for i_neighbour in self.neighbours:

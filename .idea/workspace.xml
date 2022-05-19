@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b249061-bfa4-4122-a090-87ddcce455fa" name="Changes" comment="25 -cohab3">
+    <list default="true" id="2b249061-bfa4-4122-a090-87ddcce455fa" name="Changes" comment="25 -cohab4">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mod25/cohab2.py" beforeDir="false" afterPath="$PROJECT_DIR$/mod25/cohab2.py" afterDir="false" />
     </list>
@@ -215,7 +215,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652792688515</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="25 -cohab4">
+      <created>1652878685437</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1652878685437</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -234,6 +241,7 @@
     <MESSAGE value="четверг+1" />
     <MESSAGE value="25 cohab" />
     <MESSAGE value="25 -cohab3" />
-    <option name="LAST_COMMIT_MESSAGE" value="25 -cohab3" />
+    <MESSAGE value="25 -cohab4" />
+    <option name="LAST_COMMIT_MESSAGE" value="25 -cohab4" />
   </component>
 </project>
