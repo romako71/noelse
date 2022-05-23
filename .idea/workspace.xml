@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b249061-bfa4-4122-a090-87ddcce455fa" name="Changes" comment="25 -cohab4">
+    <list default="true" id="2b249061-bfa4-4122-a090-87ddcce455fa" name="Changes" comment="25 -cohab5">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mod25/cohab2.py" beforeDir="false" afterPath="$PROJECT_DIR$/mod25/cohab2.py" afterDir="false" />
     </list>
@@ -222,7 +222,14 @@
       <option name="project" value="LOCAL" />
       <updated>1652878685437</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="25 -cohab5">
+      <created>1652965579047</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1652965579047</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -242,6 +249,18 @@
     <MESSAGE value="25 cohab" />
     <MESSAGE value="25 -cohab3" />
     <MESSAGE value="25 -cohab4" />
-    <option name="LAST_COMMIT_MESSAGE" value="25 -cohab4" />
+    <MESSAGE value="25 -cohab5" />
+    <option name="LAST_COMMIT_MESSAGE" value="25 -cohab5" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/mod25/cohab2.py</url>
+          <line>138</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
