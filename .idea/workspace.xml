@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2b249061-bfa4-4122-a090-87ddcce455fa" name="Changes" comment="25 -cohab5">
+    <list default="true" id="2b249061-bfa4-4122-a090-87ddcce455fa" name="Changes" comment="25 cohab2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mod25/cohab2.py" beforeDir="false" afterPath="$PROJECT_DIR$/mod25/cohab2.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -242,6 +241,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="четверг" />
@@ -251,16 +251,5 @@
     <MESSAGE value="25 -cohab4" />
     <MESSAGE value="25 -cohab5" />
     <option name="LAST_COMMIT_MESSAGE" value="25 -cohab5" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/mod25/cohab2.py</url>
-          <line>138</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>
